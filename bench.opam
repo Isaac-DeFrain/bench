@@ -12,6 +12,10 @@ bug-reports: "https://github.com/username/reponame/issues"
 depends: [
   "ocaml"
   "dune" {>= "3.3"}
+  "async"
+  "base"
+  "core_bench"
+  "core_unix.command_unix"
   "odoc" {with-doc}
 ]
 build: [

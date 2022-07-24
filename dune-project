@@ -5,11 +5,11 @@
 (generate_opam_files true)
 
 (source
- (github username/reponame))
+ (github Isaac-DeFrain/bench))
 
-(authors "Author Name")
+(authors "Isaac DeFrain")
 
-(maintainers "Maintainer Name")
+(maintainers "Isaac DeFrain")
 
 (license LICENSE)
 
@@ -17,10 +17,11 @@
 
 (package
  (name bench)
- (synopsis "A short synopsis")
+ (synopsis "Benchmarking patterns in OCaml")
  (description "A longer description")
- (depends ocaml dune)
+ (depends ocaml dune async base core_bench core_unix)
  (tags
   (topics "to describe" your project)))
 
 ; See the complete stanza docs at https://dune.readthedocs.io/en/stable/dune-files.html#dune-project
+
