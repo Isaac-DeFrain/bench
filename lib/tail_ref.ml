@@ -13,6 +13,8 @@ module Pm = struct
   let named_bench = ("Tail-recursion", bench)
 end
 
+let bench f () = ignore (f test_list)
+
 (** mutable reference *)
 module Ref = struct
   let rec add l =
@@ -23,9 +25,7 @@ module Ref = struct
       acc := hd + !acc;
       add tl
 
-  let bench () = ignore (add test_list)
-
-  let named_bench = ("Reference", bench)
+  let named_bench = ("Reference", bench add)
 end
 
 (** mutable reference, for loop *)
@@ -38,50 +38,41 @@ module For_ref = struct
       acc := !acc + List.nth_exn l i
     done
 
-  let bench () = ignore (add test_list)
-
-  let named_bench = ("Ref for-loop", bench)
+  let named_bench = ("Ref for-loop", bench add)
 end
 
 (** stdlib fold_left *)
 module Stdlib_fl = struct
   let add = Caml.List.fold_left ( + ) 0
 
-  let bench () = ignore (add test_list)
-
-  let named_bench = ("Stdlib fold left", bench)
+  let named_bench = ("Stdlib fold left", bench add)
 end
 
 (** stdlib fold_right *)
 module Stdlib_fr = struct
   let add l = Caml.List.fold_right ( + ) l 0
 
-  let bench () = ignore (add test_list)
-
-  let named_bench = ("Stdlib fold right", bench)
+  let named_bench = ("Stdlib fold right", bench add)
 end
 
 (** base fold_left *)
 module Base_fl = struct
   let add l = List.fold_left l ~init:0 ~f:( + )
 
-  let bench () = ignore (add test_list)
-
-  let named_bench = ("Base fold left", bench)
+  let named_bench = ("Base fold left", bench add)
 end
 
 (** base fold_right *)
 module Base_fr = struct
   let add l = List.fold_right l ~init:0 ~f:( + )
 
-  let bench () = ignore (add test_list)
-
-  let named_bench = ("Base fold right", bench)
+  let named_bench = ("Base fold right", bench add)
 end
 
 let benchmarks =
   [ Pm.named_bench
   ; Ref.named_bench
+  ; For_ref.named_bench
   ; Stdlib_fl.named_bench
   ; Stdlib_fr.named_bench
   ; Base_fl.named_bench
