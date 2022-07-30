@@ -28,6 +28,8 @@ $ dune exec -- ./_build/default/bin/main.exe
 
 Here are some interesting discoveries:
 
+- manipulating ADTs is slightly slower than manipulating the correponding GADTs
+- pattern matching on ADTs is faster than the corresponding GADTs
 - `Async` functions are faster then their `Stdlib` counterparts and significantly faster than their `Lwt` counterparts
 - `Stdlib` functions are faster than their `Base` library counterparts
 - tail-recursive list pattern matching is faster than folding over a list
